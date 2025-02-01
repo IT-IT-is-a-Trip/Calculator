@@ -1,0 +1,27 @@
+#calculator {
+    display: flex;
+    flex-direction: column;
+    width: 500px;
+    height: 500px;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+}
+#buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.block button {
+    height: 50px;
+}
+.block {
+    display: flex;
+    flex-direction: column;
+    flex: 1;
+}
+#outputLine {
+    border: 1px solid black;
+    height: 50px;
+    padding: 10px;
+    text-align: right;
+}
