@@ -2,17 +2,19 @@
     display: flex;
     flex-direction: column;
     width: 500px;
-    height: 500px;
+    /* height: 500px; */
     -webkit-user-select: none;
     -moz-user-select: none;
     -ms-user-select: none;
+    border: 5px solid rgba(201, 69, 8, 0.753);
+    border-radius: 15px;
 }
 #buttons {
     display: flex;
     justify-content: space-between;
 }
 .block button {
-    height: 50px;
+    height: 65px;
 }
 .block {
     display: flex;
@@ -20,8 +22,15 @@
     flex: 1;
 }
 #outputLine {
-    border: 1px solid black;
+    border: 1px solid rgb(107, 48, 48);
     height: 50px;
     padding: 10px;
     text-align: right;
+    background-color:  wheat;
+    font-weight: 600;
+    font-size: 150%;
+}
+button {
+    background-color: antiquewhite;
+    border: 3px solid rgba(201, 0, 0, 0.699);
 }

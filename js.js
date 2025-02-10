@@ -18,40 +18,18 @@ const AC = document.querySelector('.clear.all')
 AC.addEventListener('pointerdown', clearAll);
 let buttons = document.getElementById('buttons');
 
-function calculate(a, b, operation) {
-    let result = 0;
-    switch (operation) {
-        case OPERATIONS.sum:
-            result = a + b;
-            break;
-
-        case OPERATIONS.substract:
-            result = a - b;
-            break;
-
-        case OPERATIONS.multiply:
-            result = a * b;
-            break;
-
-        case OPERATIONS.division:
-            result = a / b;
-            break;
-
-        default:
-
-            break;
-    }
-    return result;
-}
 buttons.addEventListener('click', (e) => {
     // if (!e.target.classList.contains('')) return;
     if (e.target.classList.contains('clear all')) return;
     const key = e.target.textContent;
     if (numbers.includes(key)) {
+        if (key === '0' || key === '00') {
+            if (output.textContent == 0) return;
+        }
         if (b == "" && operator == '') {
         a+=key;
         output.textContent = a;
-        } else if (a !=='' && b !== '' && calculated) {
+        } else if (a !=='' && b !== '' && calculated && key !== '.') {
             b = key;
             calculated = false;
             output.textContent = b;
@@ -65,8 +43,27 @@ buttons.addEventListener('click', (e) => {
         operator = key;
         output.textContent = operator;
         return;
+    } else if (key == '+/-') {
+        if (output.textContent == a) {
+            if (a > 0 && a !== 0 ) {
+                a = -a;
+                output.textContent = a;
+            } else {
+                a = +a
+                output.textContent = a;
+            };
+        } else if (output.textContent == b) {
+            if (b > 0 && b !== 0 ) {
+                b = -b;
+                output.textContent = b;
+            } else {
+                b = +b;
+                output.textContent = b;
+            };
+        }
     };
     if (key === '=' ) {
+        if (b === '') b = a;
         let r = '';
         switch (operator) {
             case '+':
@@ -82,11 +79,26 @@ buttons.addEventListener('click', (e) => {
                 break;
     
             case '/':
+                if (b === 0) {
+                    output.textContent = 'Error';
+                    a = '';
+                    b = '';
+                    operator = '';
+                }
                 a = a / b;
                 break;
         }
         calculated = true;
         output.textContent = a;
         console.log(a,b,operator)
-    }    
+    }
+    if (key === '.' && !output.textContent.includes('.'))  {
+        if (b == '') {
+        a += '.';
+        output.textContent = a;
+        } else if (b !=='') {
+            b += '.';
+            output.textContent = b;
+        }
+    }
 })
